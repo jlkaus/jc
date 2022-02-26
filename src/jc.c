@@ -113,6 +113,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 static struct argp program_arg_parser = {program_options, parse_opt, args_doc, program_documentation};
 
 int main(int argc, char* argv[]) {
+  program_invocation_name = xstr(PKGNAME);
+
   // interpret arguments
   struct program_arguments args = {0, (uint64_t)time(NULL), stdout, NULL, NULL};
   argp_parse(&program_arg_parser, argc, argv, ARGP_IN_ORDER, 0, &args);
